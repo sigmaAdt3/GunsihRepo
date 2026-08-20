@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>GunIsh Jewels | Premium Jewellery</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Georgia", serif;
+            background: #faf8f5;
+            color: #2c2c2c;
+        }
+
+        /* =========================
+           HEADER
+        ========================== */
+
+        header {
+            background: #111;
+            color: white;
+            padding: 15px 6%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 25px;
+            letter-spacing: 2px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 25px;
+            font-size: 14px;
+        }
+
+        nav a:hover {
+            color: #d4af37;
+        }
+
+        /* =========================
+           HERO BANNER
+        ========================== */
+
+        .hero {
+            height: 500px;
+            background:
+                linear-gradient(
+                    rgba(0,0,0,.35),
+                    rgba(0,0,0,.35)
+                ),
+                url("images/banner.jpg");
+
+            background-size: cover;
+            background-position: center;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+
+            color: white;
+        }
+
+        .hero-content {
+            max-width: 700px;
+            padding: 20px;
+        }
+
+        .hero-logo {
+            width: 150px;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: 50px;
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 25px;
+        }
+
+        .hero-btn {
+            display: inline-block;
+            background: #d4af37;
+            color: white;
+            padding: 13px 30px;
+            text-decoration: none;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+
+        /* =========================
+           SECTION
+        ========================== */
+
+        .section {
+            padding: 60px 6%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .section-title h2 {
+            font-size: 34px;
+            letter-spacing: 2px;
+        }
+
+        .section-title p {
+            margin-top: 10px;
+            color: #777;
+        }
+
+        /* =========================
+           FEATURE CAROUSEL
+        ========================== */
+
+        .carousel {
+            position: relative;
+            overflow: hidden;
+            max-width: 1100px;
+            margin: auto;
+            border-radius: 10px;
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform .5s ease;
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            height: 400px;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            border: none;
+            background: rgba(0,0,0,.5);
+            color: white;
+            font-size: 30px;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .carousel-prev {
+            left: 15px;
+        }
+
+        .carousel-next {
+            right: 15px;
+        }
+
+        /* =========================
+           PRODUCTS
+        ========================== */
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,.08);
+            transition: .3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,.12);
+        }
+
+        .product-image {
+            height: 280px;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: .4s;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+
+        .product-info {
+            padding: 18px;
+        }
+
+        .product-category {
+            font-size: 12px;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .product-name {
+            font-size: 19px;
+            margin: 7px 0;
+        }
+
+        .price {
+            font-weight: bold;
+            font-size: 18px;
+            color: #b18a1c;
+            margin-bottom: 15px;
+        }
+
+        .product-buttons {
+            display: flex;
+            gap: 8px;
+        }
+
+        .btn {
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 13px;
+            flex: 1;
+        }
+
+        .details-btn {
+            background: #eee;
+        }
+
+        .whatsapp-btn {
+            background: #25D366;
+            color: white;
+        }
+
+        /* =========================
+           MODAL
+        ========================== */
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,.75);
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: white;
+            max-width: 800px;
+            width: 100%;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .modal-body {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .modal-image {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+        }
+
+        .modal-info {
+            padding: 40px;
+        }
+
+        .modal-info h2 {
+            font-size: 30px;
+            margin-bottom: 15px;
+        }
+
+        .modal-price {
+            font-size: 25px;
+            color: #b18a1c;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .modal-description {
+            color: #666;
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+
+        .close {
+            position: absolute;
+            right: 15px;
+            top: 10px;
+            font-size: 30px;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .modal-whatsapp {
+            display: block;
+            background: #25D366;
+            color: white;
+            padding: 14px;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        /* =========================
+           FOOTER
+        ========================== */
+
+        footer {
+            background: #111;
+            color: white;
+            text-align: center;
+            padding: 35px 20px;
+            margin-top: 40px;
+        }
+
+        footer h3 {
+            margin-bottom: 10px;
+        }
+
+        footer p {
+            color: #aaa;
+            font-size: 14px;
+        }
+
+        /* =========================
+           MOBILE
+        ========================== */
+
+        @media(max-width: 1000px) {
+
+            .products {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+        }
+
+        @media(max-width: 700px) {
+
+            header {
+                padding: 12px 20px;
+            }
+
+            nav {
+                display: none;
+            }
+
+            .hero {
+                height: 450px;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .products {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+
+            .product-image {
+                height: 220px;
+            }
+
+            .product-info {
+                padding: 12px;
+            }
+
+            .product-name {
+                font-size: 16px;
+            }
+
+            .product-buttons {
+                flex-direction: column;
+            }
+
+            .carousel-slide {
+                height: 300px;
+            }
+
+            .modal-body {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-image {
+                height: 300px;
+            }
+
+            .modal-info {
+                padding: 25px;
+            }
+
+        }
+
+        @media(max-width: 420px) {
+
+            .products {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .product-image {
+                height: 190px;
+            }
+
+            .section {
+                padding: 40px 15px;
+            }
+
+        }
+
+    </style>
+</head>
+
+<body>
+
+
+<!-- =========================
+     HEADER
+========================== -->
+
+<header>
+
+    <div class="logo">
+        GunIsh Jewels
+    </div>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#collections">Collections</a>
+        <a href="#products">Jewellery</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+</header>
+
+
+<!-- =========================
+     HERO
+========================== -->
+
+<section class="hero" id="home">
+
+    <div class="hero-content">
+
+        <!-- Replace with your logo -->
+        <img
+            src="https://i.ibb.co/RTStC26H/45-C52-BDD-83-AB-4398-B3-AF-97-FE920-B681-B.png"
+            class="hero-logo"
+            alt="GunIsh Jewels"
+        >
+
+        <h1>GunIsh Jewels</h1>
+
+        <p>
+            Elegant. Timeless. Made to Shine.
+        </p>
+
+        <a href="#products" class="hero-btn">
+            Explore Collection
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     COLLECTION CAROUSEL
+========================== -->
+
+<section class="section" id="collections">
+
+    <div class="section-title">
+
+        <h2>Our Collection</h2>
+
+        <p>
+            Discover our latest jewellery collection
+        </p>
+
+    </div>
+
+
+    <div class="carousel">
+
+        <div class="carousel-track" id="carouselTrack">
+
+            <div class="carousel-slide">
+                <img src="https://i.ibb.co/cSvBDCKR/IMG-7425.png" alt="Collection">
+            </div>
+
+            <div class="carousel-slide">
+                <img src="https://i.ibb.co/dwSsdwHc/8981575-F-B361-4185-9-B7-E-BA811-B776-C53.png" alt="Collection">
+            </div>
+
+            <div class="carousel-slide">
+                <img src="https://i.ibb.co/MbgPSsy/57-FDA960-FA6-C-4714-B9-C7-93-B66-FD539-AC.png" alt="Collection">
+            </div>
+
+        </div>
+
+
+        <button
+            class="carousel-btn carousel-prev"
+            onclick="previousSlide()">
+            ‹
+        </button>
+
+        <button
+            class="carousel-btn carousel-next"
+            onclick="nextSlide()">
+            ›
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     PRODUCTS
+========================== -->
+
+<section class="section" id="products">
+
+    <div class="section-title">
+
+        <h2>Featured Jewellery</h2>
+
+        <p>
+            Handpicked pieces for every occasion
+        </p>
+
+    </div>
+
+
+    <div
+        class="products"
+        id="productContainer">
+    </div>
+
+</section>
+
+
+<!-- =========================
+     PRODUCT MODAL
+========================== -->
+
+<div
+    class="modal"
+    id="productModal">
+
+    <div class="modal-content">
+
+        <span
+            class="close"
+            onclick="closeModal()">
+            ×
+        </span>
+
+        <div class="modal-body">
+
+            <img
+                id="modalImage"
+                class="modal-image"
+                src=""
+                alt="Product"
+            >
+
+            <div class="modal-info">
+
+                <div
+                    id="modalCategory"
+                    class="product-category">
+                </div>
+
+                <h2 id="modalName"></h2>
+
+                <div
+                    id="modalPrice"
+                    class="modal-price">
+                </div>
+
+                <p
+                    id="modalDescription"
+                    class="modal-description">
+                </p>
+
+                <a
+                    id="modalWhatsapp"
+                    class="modal-whatsapp"
+                    target="_blank">
+
+                    Order on WhatsApp
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     FOOTER
+========================== -->
+
+<footer id="contact">
+
+    <h3>GunIsh Jewels</h3>
+
+    <p>
+        Premium Anti-Tarnish Jewellery
+    </p>
+
+    <br>
+
+    <p>
+        Order directly through WhatsApp
+    </p>
+
+</footer>
+
+
+<script>
+
+/* =====================================================
+   WHATSAPP NUMBER
+===================================================== */
+
+/*
+   Replace this with your WhatsApp number.
+
+   IMPORTANT:
+   Country code only.
+   Example India:
+   919620993137
+
+   Don't use:
+   +91
+   spaces
+   brackets
+*/
+
+const whatsappNumber = "919620993137";
+
+
+/* =====================================================
+   PRODUCT DATA
+===================================================== */
+
+/*
+   Add / remove products here.
+
+   Example:
+
+   {
+       name: "Golden Hoop Earrings",
+       category: "Earrings",
+       price: "₹199",
+       image: "images/earring1.jpg",
+       description: "Beautiful lightweight anti-tarnish earrings."
+   }
+
+*/
+
+const products = [
+
+    {
+        name: "Elegant Gold Earrings",
+        category: "Earrings",
+        price: "₹199",
+        image: "images/earring1.jpg",
+        description:
+            "Elegant lightweight anti-tarnish earrings perfect for daily wear and special occasions."
+    },
+
+    {
+        name: "Classic Pearl Earrings",
+        category: "Earrings",
+        price: "₹179",
+        image: "images/earring2.jpg",
+        description:
+            "Classic pearl-inspired earrings designed to add an elegant touch to your look."
+    },
+
+    {
+        name: "Minimal Gold Ring",
+        category: "Rings",
+        price: "₹149",
+        image: "images/ring1.jpg",
+        description:
+            "Minimal and stylish ring suitable for everyday wear."
+    },
+
+    {
+        name: "Premium Statement Ring",
+        category: "Rings",
+        price: "₹199",
+        image: "images/ring2.jpg",
+        description:
+            "A premium statement ring designed for parties and special occasions."
+    },
+
+    {
+        name: "Elegant Bracelet",
+        category: "Bracelet",
+        price: "₹189",
+        image: "images/bracelet1.jpg",
+        description:
+            "Stylish anti-tarnish bracelet with a premium finish."
+    },
+
+    {
+        name: "Classic Necklace",
+        category: "Necklace",
+        price: "₹350",
+        image: "https://i.ibb.co/pjmjK98S/DBD10-C40-0-E25-4-C74-9-D7-B-599-EAB34-AD32.png",
+        description:
+            "Elegant necklace that pairs beautifully with both ethnic and western outfits."
+    }
+
+];
+
+
+/* =====================================================
+   DISPLAY PRODUCTS
+===================================================== */
+
+const productContainer =
+    document.getElementById("productContainer");
+
+
+function displayProducts() {
+
+    productContainer.innerHTML = "";
+
+    products.forEach((product, index) => {
+
+        const card = document.createElement("div");
+
+        card.className = "product-card";
+
+        card.innerHTML = `
+
+            <div class="product-image">
+
+                <img
+                    src="${product.image}"
+                    alt="${product.name}"
+                    loading="lazy"
+                >
+
+            </div>
+
+
+            <div class="product-info">
+
+                <div class="product-category">
+                    ${product.category}
+                </div>
+
+                <div class="product-name">
+                    ${product.name}
+                </div>
+
+                <div class="price">
+                    ${product.price}
+                </div>
+
+
+                <div class="product-buttons">
+
+                    <button
+                        class="btn details-btn"
+                        onclick="showDetails(${index})">
+
+                        View Details
+
+                    </button>
+
+
+                    <button
+                        class="btn whatsapp-btn"
+                        onclick="orderWhatsApp(${index})">
+
+                        WhatsApp
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        `;
+
+        productContainer.appendChild(card);
+
+    });
+
+}
+
+
+/* =====================================================
+   WHATSAPP ORDER
+===================================================== */
+
+function orderWhatsApp(index) {
+
+    const product = products[index];
+
+    const message =
+        `Hi GunIsh Jewels 👋
+
+I am interested in this product:
+
+Product: ${product.name}
+Category: ${product.category}
+Price: ${product.price}
+
+Please share availability and ordering details.`;
+
+    const url =
+        `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+
+    window.open(url, "_blank");
+
+}
+
+
+/* =====================================================
+   PRODUCT DETAILS
+===================================================== */
+
+function showDetails(index) {
+
+    const product = products[index];
+
+    document.getElementById("modalImage").src =
+        product.image;
+
+    document.getElementById("modalCategory").textContent =
+        product.category;
+
+    document.getElementById("modalName").textContent =
+        product.name;
+
+    document.getElementById("modalPrice").textContent =
+        product.price;
+
+    document.getElementById("modalDescription").textContent =
+        product.description;
+
+
+    const message =
+        `Hi GunIsh Jewels 👋
+
+I am interested in:
+
+Product: ${product.name}
+Category: ${product.category}
+Price: ${product.price}
+
+Please share availability and ordering details.`;
+
+
+    document.getElementById("modalWhatsapp").href =
+        `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+
+
+    document.getElementById("productModal").style.display =
+        "flex";
+
+}
+
+
+/* =====================================================
+   CLOSE MODAL
+===================================================== */
+
+function closeModal() {
+
+    document.getElementById("productModal").style.display =
+        "none";
+
+}
+
+
+window.onclick = function(event) {
+
+    const modal =
+        document.getElementById("productModal");
+
+    if (event.target === modal) {
+
+        closeModal();
+
+    }
+
+};
+
+
+/* =====================================================
+   CAROUSEL
+===================================================== */
+
+let currentSlide = 0;
+
+const carouselTrack =
+    document.getElementById("carouselTrack");
+
+const totalSlides =
+    document.querySelectorAll(".carousel-slide").length;
+
+
+function updateCarousel() {
+
+    carouselTrack.style.transform =
+        `translateX(-${currentSlide * 100}%)`;
+
+}
+
+
+function nextSlide() {
+
+    currentSlide++;
+
+    if (currentSlide >= totalSlides) {
+
+        currentSlide = 0;
+
+    }
+
+    updateCarousel();
+
+}
+
+
+function previousSlide() {
+
+    currentSlide--;
+
+    if (currentSlide < 0) {
+
+        currentSlide = totalSlides - 1;
+
+    }
+
+    updateCarousel();
+
+}
+
+
+/* =====================================================
+   AUTO SLIDE
+===================================================== */
+
+setInterval(() => {
+
+    nextSlide();
+
+}, 4000);
+
+
+/* =====================================================
+   INITIALIZE
+===================================================== */
+
+displayProducts();
+
+</script>
+
+</body>
+</html>
