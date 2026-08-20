@@ -1,26 +1,666 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="GunIsh Jewels - elegant anti-tarnish jewellery.">
-<title>GunIsh Jewels | Elegant Jewellery</title>
-<link rel="icon" href="https://i.ibb.co/RTStC26H/45-C52-BDD-83-AB-4398-B3-AF-97-FE920-B681-B.png" type="image/svg+xml"><link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+        content="GunIsh Jewels - elegant, affordable and anti-tarnish jewellery.">
+
+    <meta name="theme-color" content="#111111">
+
+    <title>GunIsh Jewels | Elegant Jewellery</title>
+
+    <!-- GunIsh Jewels Logo / Favicon -->
+    <link
+        rel="icon"
+        href="https://i.ibb.co/RTStC26H/45-C52-BDD-83-AB-4398-B3-AF-97-FE920-B681-B.png"
+        type="image/png"
+    >
+
+    <link rel="stylesheet" href="style.css">
 </head>
+
+
 <body>
-<header><a class="brand" href="#home"><img src="images/logo.svg" alt="GunIsh Jewels"><span>GunIsh <b>Jewels</b></span></a><nav><a href="#home">Home</a><a href="#collections">Collections</a><a href="#products">Jewellery</a><a href="#about">About</a></nav><button id="menu">☰</button></header>
-<div id="mobileNav"><a href="#home">Home</a><a href="#collections">Collections</a><a href="#products">Jewellery</a><a href="#about">About</a></div>
+
+
+<!-- =========================================================
+     HEADER
+========================================================= -->
+
+<header>
+
+    <a class="brand" href="#home">
+
+        <img
+            src="https://i.ibb.co/RTStC26H/45-C52-BDD-83-AB-4398-B3-AF-97-FE920-B681-B.png"
+            alt="GunIsh Jewels Logo"
+        >
+
+        <span>
+            GunIsh <b>Jewels</b>
+        </span>
+
+    </a>
+
+
+    <nav>
+
+        <a href="#home">
+            Home
+        </a>
+
+        <a href="#collections">
+            Collections
+        </a>
+
+        <a href="#products">
+            Jewellery
+        </a>
+
+        <a href="#about">
+            About
+        </a>
+
+    </nav>
+
+
+    <button
+        id="menu"
+        aria-label="Open Menu"
+    >
+        ☰
+    </button>
+
+</header>
+
+
+<!-- =========================================================
+     MOBILE NAVIGATION
+========================================================= -->
+
+<div id="mobileNav">
+
+    <a href="#home">
+        Home
+    </a>
+
+    <a href="#collections">
+        Collections
+    </a>
+
+    <a href="#products">
+        Jewellery
+    </a>
+
+    <a href="#about">
+        About
+    </a>
+
+</div>
+
+
+<!-- =========================================================
+     MAIN
+========================================================= -->
+
 <main>
-<section class="hero" id="home"><div class="overlay"></div><div class="heroText"><small>ELEGANCE • EVERY DAY</small><h1>Jewellery that<br><em>makes you shine.</em></h1><p>Elegant, affordable and carefully selected jewellery for every occasion.</p><a class="goldBtn" href="#products">SHOP COLLECTION</a></div></section>
-<section class="trust"><span>✦ Anti-Tarnish</span><span>✦ Affordable Luxury</span><span>✦ WhatsApp Ordering</span><span>✦ Carefully Packed</span></section>
-<section class="section" id="collections"><div class="heading"><small>DISCOVER</small><h2>Shop by Collection</h2><p>Find the piece that completes your look.</p></div><div class="collections">
-<button data-cat="Earrings"><img src="images/banners/https://i.ibb.co/cSvBDCKR/IMG-7425.png"><strong>Earrings</strong></button><button data-cat="Rings"><img src="images/banners/https://i.ibb.co/cSvBDCKR/IMG-7425.png"><strong>Rings</strong></button><button data-cat="Necklaces"><img src="images/banners/https://i.ibb.co/cSvBDCKR/IMG-7425.png"><strong>Necklaces</strong></button><button data-cat="Bracelets"><img src="images/banners/https://i.ibb.co/cSvBDCKR/IMG-7425.png"><strong>Bracelets</strong></button>
-</div></section>
-<section class="section productsSec" id="products"><div class="heading"><small>GUNISH JEWELS</small><h2>Featured Jewellery</h2><p>Choose a piece and order directly on WhatsApp.</p></div><div class="toolbar"><div id="filters"><button class="active" data-filter="All">All</button><button data-filter="Earrings">Earrings</button><button data-filter="Rings">Rings</button><button data-filter="Necklaces">Necklaces</button><button data-filter="Bracelets">Bracelets</button></div><input id="search" placeholder="Search jewellery..."></div><div class="grid" id="grid"></div><p id="empty" class="empty hidden">No products found.</p></section>
-<section class="story" id="about"><img src="images/banners/https://i.ibb.co/gMf3T9tH/0450-ED53-24-C3-4-ECF-99-AC-119-CEADEC725.png" alt="GunIsh Jewels"><div><small>OUR STORY</small><h2>Little details.<br>Big moments.</h2><p>GunIsh Jewels is built around a simple idea: jewellery should feel special without feeling out of reach.</p><p>From everyday earrings to statement pieces, every product is selected with style, comfort and value in mind.</p><a href="https://instagram.com/gunishjewels" target="_blank">Follow us on Instagram →</a></div></section>
-<section class="cta"><small>READY TO SHINE?</small><h2>Find your next favourite piece.</h2><a class="goldBtn" href="#products">VIEW JEWELLERY</a></section>
+
+
+<!-- =========================================================
+     HERO SECTION
+========================================================= -->
+
+<section
+    class="hero"
+    id="home"
+>
+
+    <div class="overlay"></div>
+
+
+    <div class="heroText">
+
+        <small>
+            ELEGANCE • EVERY DAY
+        </small>
+
+
+        <h1>
+            Jewellery that<br>
+
+            <em>
+                makes you shine.
+            </em>
+        </h1>
+
+
+        <p>
+            Elegant, affordable and carefully
+            selected jewellery for every occasion.
+        </p>
+
+
+        <a
+            class="goldBtn"
+            href="#products"
+        >
+            SHOP COLLECTION
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     TRUST STRIP
+========================================================= -->
+
+<section class="trust">
+
+    <span>
+        ✦ Anti-Tarnish
+    </span>
+
+    <span>
+        ✦ Affordable Luxury
+    </span>
+
+    <span>
+        ✦ WhatsApp Ordering
+    </span>
+
+    <span>
+        ✦ Carefully Packed
+    </span>
+
+</section>
+
+
+<!-- =========================================================
+     COLLECTIONS
+========================================================= -->
+
+<section
+    class="section"
+    id="collections"
+>
+
+    <div class="heading">
+
+        <small>
+            DISCOVER
+        </small>
+
+        <h2>
+            Shop by Collection
+        </h2>
+
+        <p>
+            Find the piece that completes your look.
+        </p>
+
+    </div>
+
+
+    <div class="collections">
+
+
+        <!-- EARRINGS -->
+
+        <button
+            data-cat="Earrings"
+            type="button"
+        >
+
+            <img
+                src="https://i.ibb.co/cSvBDCKR/IMG-7425.png"
+                alt="GunIsh Jewels Earrings"
+                loading="lazy"
+            >
+
+            <strong>
+                Earrings
+            </strong>
+
+        </button>
+
+
+        <!-- RINGS -->
+
+        <button
+            data-cat="Rings"
+            type="button"
+        >
+
+            <img
+                src="https://i.ibb.co/pjmjK98S/DBD10-C40-0-E25-4-C74-9-D7-B-599-EAB34-AD32.png"
+                alt="GunIsh Jewels Rings"
+                loading="lazy"
+            >
+
+            <strong>
+                Rings
+            </strong>
+
+        </button>
+
+
+        <!-- NECKLACES -->
+
+        <button
+            data-cat="Necklaces"
+            type="button"
+        >
+
+            <img
+                src="https://i.ibb.co/pjmjK98S/DBD10-C40-0-E25-4-C74-9-D7-B-599-EAB34-AD32.png"
+                alt="GunIsh Jewels Necklaces"
+                loading="lazy"
+            >
+
+            <strong>
+                Necklaces
+            </strong>
+
+        </button>
+
+
+        <!-- BRACELETS -->
+
+        <button
+            data-cat="Bracelets"
+            type="button"
+        >
+
+            <img
+                src="https://i.ibb.co/dwSsdwHc/8981575-F-B361-4185-9-B7-E-BA811-B776-C53.png"
+                alt="GunIsh Jewels Bracelets"
+                loading="lazy"
+            >
+
+            <strong>
+                Bracelets
+            </strong>
+
+        </button>
+
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     PRODUCTS
+========================================================= -->
+
+<section
+    class="section productsSec"
+    id="products"
+>
+
+    <div class="heading">
+
+        <small>
+            GUNISH JEWELS
+        </small>
+
+
+        <h2>
+            Featured Jewellery
+        </h2>
+
+
+        <p>
+            Choose a piece and order directly on WhatsApp.
+        </p>
+
+    </div>
+
+
+    <!-- FILTER + SEARCH -->
+
+    <div class="toolbar">
+
+
+        <div id="filters">
+
+            <button
+                class="active"
+                data-filter="All"
+                type="button"
+            >
+                All
+            </button>
+
+
+            <button
+                data-filter="Earrings"
+                type="button"
+            >
+                Earrings
+            </button>
+
+
+            <button
+                data-filter="Rings"
+                type="button"
+            >
+                Rings
+            </button>
+
+
+            <button
+                data-filter="Necklaces"
+                type="button"
+            >
+                Necklaces
+            </button>
+
+
+            <button
+                data-filter="Bracelets"
+                type="button"
+            >
+                Bracelets
+            </button>
+
+        </div>
+
+
+        <input
+            id="search"
+            type="search"
+            placeholder="Search jewellery..."
+            autocomplete="off"
+        >
+
+    </div>
+
+
+    <!-- PRODUCTS ARE GENERATED BY SCRIPT.JS -->
+
+    <div
+        class="grid"
+        id="grid"
+    ></div>
+
+
+    <p
+        id="empty"
+        class="empty hidden"
+    >
+        No products found.
+    </p>
+
+</section>
+
+
+<!-- =========================================================
+     ABOUT / STORY
+========================================================= -->
+
+<section
+    class="story"
+    id="about"
+>
+
+
+    <img
+        src="https://i.ibb.co/pjmjK98S/DBD10-C40-0-E25-4-C74-9-D7-B-599-EAB34-AD32.png"
+        alt="GunIsh Jewels"
+        loading="lazy"
+    >
+
+
+    <div>
+
+        <small>
+            OUR STORY
+        </small>
+
+
+        <h2>
+            Little details.<br>
+            Big moments.
+        </h2>
+
+
+        <p>
+            GunIsh Jewels is built around
+            a simple idea: jewellery should
+            feel special without feeling
+            out of reach.
+        </p>
+
+
+        <p>
+            From everyday earrings to
+            statement pieces, every product
+            is selected with style, comfort
+            and value in mind.
+        </p>
+
+
+        <a
+            href="https://instagram.com/gunishjewels"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            Follow us on Instagram →
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     CALL TO ACTION
+========================================================= -->
+
+<section class="cta">
+
+    <small>
+        READY TO SHINE?
+    </small>
+
+
+    <h2>
+        Find your next favourite piece.
+    </h2>
+
+
+    <a
+        class="goldBtn"
+        href="#products"
+    >
+        VIEW JEWELLERY
+    </a>
+
+</section>
+
+
 </main>
-<footer><img src="images/https://i.ibb.co/RTStC26H/45-C52-BDD-83-AB-4398-B3-AF-97-FE920-B681-B.png"><h3>GunIsh Jewels</h3><p>Elegant • Timeless • Made to Shine</p><div><a href="#products">Shop</a><a href="https://instagram.com/gunishjewels" target="_blank">Instagram</a><a id="footerWA" target="_blank">WhatsApp</a></div><small>© <span id="year"></span> GunIsh Jewels</small></footer>
-<div class="modal hidden" id="modal"><div class="modalCard"><button id="close">×</button><img id="mImg"><div class="mInfo"><small id="mCat"></small><h2 id="mName"></h2><h3 id="mPrice"></h3><p id="mDesc"></p><div class="qty"><button id="minus">−</button><span id="q">1</span><button id="plus">+</button></div><a id="mWA" class="wa" target="_blank">ORDER ON WHATSAPP</a></div></div></div>
-<a class="floatWA" id="floatWA" target="_blank">☏</a>
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer>
+
+
+    <img
+        src="https://i.ibb.co/RTStC26H/45-C52-BDD-83-AB-4398-B3-AF-97-FE920-B681-B.png"
+        alt="GunIsh Jewels Logo"
+    >
+
+
+    <h3>
+        GunIsh Jewels
+    </h3>
+
+
+    <p>
+        Elegant • Timeless • Made to Shine
+    </p>
+
+
+    <div class="footerLinks">
+
+        <a href="#products">
+            Shop
+        </a>
+
+
+        <a
+            href="https://instagram.com/gunishjewels"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            Instagram
+        </a>
+
+
+        <a
+            id="footerWA"
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            WhatsApp
+        </a>
+
+    </div>
+
+
+    <small>
+        © <span id="year"></span> GunIsh Jewels
+    </small>
+
+</footer>
+
+
+<!-- =========================================================
+     PRODUCT DETAILS MODAL
+========================================================= -->
+
+<div
+    class="modal hidden"
+    id="modal"
+    role="dialog"
+    aria-modal="true"
+>
+
+
+    <div class="modalCard">
+
+
+        <button
+            id="close"
+            type="button"
+            aria-label="Close"
+        >
+            ×
+        </button>
+
+
+        <img
+            id="mImg"
+            src=""
+            alt="Product"
+        >
+
+
+        <div class="mInfo">
+
+
+            <small id="mCat"></small>
+
+
+            <h2 id="mName"></h2>
+
+
+            <h3 id="mPrice"></h3>
+
+
+            <p id="mDesc"></p>
+
+
+            <!-- QUANTITY -->
+
+            <div class="qty">
+
+                <button
+                    id="minus"
+                    type="button"
+                >
+                    −
+                </button>
+
+
+                <span id="q">
+                    1
+                </span>
+
+
+                <button
+                    id="plus"
+                    type="button"
+                >
+                    +
+                </button>
+
+            </div>
+
+
+            <!-- WHATSAPP -->
+
+            <a
+                id="mWA"
+                class="wa"
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                ORDER ON WHATSAPP
+            </a>
+
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     FLOATING WHATSAPP
+========================================================= -->
+
+<a
+    class="floatWA"
+    id="floatWA"
+    href="#"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Chat with GunIsh Jewels on WhatsApp"
+>
+    ☏
+</a>
+
+
+<!-- JAVASCRIPT -->
+
 <script src="script.js"></script>
-</body></html>
+
+
+</body>
+
+</html>
