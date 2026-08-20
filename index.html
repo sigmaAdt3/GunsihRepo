@@ -1,10 +1,26 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>GitHub Pages</title>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="GunIsh Jewels - elegant anti-tarnish jewellery.">
+<title>GunIsh Jewels | Elegant Jewellery</title>
+<link rel="icon" href="images/logo.svg" type="image/svg+xml"><link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Welcome to GitHub Pages</h1>
-    <p>This site is deployed from the GunsihRepo repository.</p>
-</body>
-</html>
+<header><a class="brand" href="#home"><img src="images/logo.svg" alt="GunIsh Jewels"><span>GunIsh <b>Jewels</b></span></a><nav><a href="#home">Home</a><a href="#collections">Collections</a><a href="#products">Jewellery</a><a href="#about">About</a></nav><button id="menu">☰</button></header>
+<div id="mobileNav"><a href="#home">Home</a><a href="#collections">Collections</a><a href="#products">Jewellery</a><a href="#about">About</a></div>
+<main>
+<section class="hero" id="home"><div class="overlay"></div><div class="heroText"><small>ELEGANCE • EVERY DAY</small><h1>Jewellery that<br><em>makes you shine.</em></h1><p>Elegant, affordable and carefully selected jewellery for every occasion.</p><a class="goldBtn" href="#products">SHOP COLLECTION</a></div></section>
+<section class="trust"><span>✦ Anti-Tarnish</span><span>✦ Affordable Luxury</span><span>✦ WhatsApp Ordering</span><span>✦ Carefully Packed</span></section>
+<section class="section" id="collections"><div class="heading"><small>DISCOVER</small><h2>Shop by Collection</h2><p>Find the piece that completes your look.</p></div><div class="collections">
+<button data-cat="Earrings"><img src="images/banners/earrings.jpg"><strong>Earrings</strong></button><button data-cat="Rings"><img src="images/banners/rings.jpg"><strong>Rings</strong></button><button data-cat="Necklaces"><img src="images/banners/necklaces.jpg"><strong>Necklaces</strong></button><button data-cat="Bracelets"><img src="images/banners/bracelets.jpg"><strong>Bracelets</strong></button>
+</div></section>
+<section class="section productsSec" id="products"><div class="heading"><small>GUNISH JEWELS</small><h2>Featured Jewellery</h2><p>Choose a piece and order directly on WhatsApp.</p></div><div class="toolbar"><div id="filters"><button class="active" data-filter="All">All</button><button data-filter="Earrings">Earrings</button><button data-filter="Rings">Rings</button><button data-filter="Necklaces">Necklaces</button><button data-filter="Bracelets">Bracelets</button></div><input id="search" placeholder="Search jewellery..."></div><div class="grid" id="grid"></div><p id="empty" class="empty hidden">No products found.</p></section>
+<section class="story" id="about"><img src="images/banners/story.jpg" alt="GunIsh Jewels"><div><small>OUR STORY</small><h2>Little details.<br>Big moments.</h2><p>GunIsh Jewels is built around a simple idea: jewellery should feel special without feeling out of reach.</p><p>From everyday earrings to statement pieces, every product is selected with style, comfort and value in mind.</p><a href="https://instagram.com/gunishjewels" target="_blank">Follow us on Instagram →</a></div></section>
+<section class="cta"><small>READY TO SHINE?</small><h2>Find your next favourite piece.</h2><a class="goldBtn" href="#products">VIEW JEWELLERY</a></section>
+</main>
+<footer><img src="images/logo.svg"><h3>GunIsh Jewels</h3><p>Elegant • Timeless • Made to Shine</p><div><a href="#products">Shop</a><a href="https://instagram.com/gunishjewels" target="_blank">Instagram</a><a id="footerWA" target="_blank">WhatsApp</a></div><small>© <span id="year"></span> GunIsh Jewels</small></footer>
+<div class="modal hidden" id="modal"><div class="modalCard"><button id="close">×</button><img id="mImg"><div class="mInfo"><small id="mCat"></small><h2 id="mName"></h2><h3 id="mPrice"></h3><p id="mDesc"></p><div class="qty"><button id="minus">−</button><span id="q">1</span><button id="plus">+</button></div><a id="mWA" class="wa" target="_blank">ORDER ON WHATSAPP</a></div></div></div>
+<a class="floatWA" id="floatWA" target="_blank">☏</a>
+<script src="script.js"></script>
+</body></html>
