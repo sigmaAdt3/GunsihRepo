@@ -2,25 +2,32 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-    <meta name="description"
-        content="GunIsh Jewels - elegant, affordable and anti-tarnish jewellery.">
-
-    <meta name="theme-color" content="#111111">
+    <meta
+        name="description"
+        content="GunIsh Jewels - Elegant anti-tarnish fashion jewellery."
+    >
 
     <title>GunIsh Jewels | Elegant Jewellery</title>
 
-    <!-- GunIsh Jewels Logo / Favicon -->
     <link
         rel="icon"
         href="https://i.ibb.co/RTStC26H/45-C52-BDD-83-AB-4398-B3-AF-97-FE920-B681-B.png"
         type="image/png"
     >
 
-    <link rel="stylesheet" href="style.css">
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
 </head>
 
 
@@ -33,11 +40,14 @@
 
 <header>
 
-    <a class="brand" href="#home">
+    <a
+        class="brand"
+        href="#home"
+    >
 
         <img
             src="https://i.ibb.co/RTStC26H/45-C52-BDD-83-AB-4398-B3-AF-97-FE920-B681-B.png"
-            alt="GunIsh Jewels Logo"
+            alt="GunIsh Jewels"
         >
 
         <span>
@@ -68,12 +78,33 @@
     </nav>
 
 
-    <button
-        id="menu"
-        aria-label="Open Menu"
-    >
-        ☰
-    </button>
+    <div class="headerActions">
+
+        <button
+            id="cartButton"
+            class="cartButton"
+            type="button"
+            aria-label="Open shopping cart"
+        >
+
+            🛒
+
+            <span id="cartCount">
+                0
+            </span>
+
+        </button>
+
+
+        <button
+            id="menu"
+            type="button"
+            aria-label="Open menu"
+        >
+            ☰
+        </button>
+
+    </div>
 
 </header>
 
@@ -111,7 +142,7 @@
 
 
 <!-- =========================================================
-     HERO SECTION
+     HERO
 ========================================================= -->
 
 <section
@@ -131,16 +162,13 @@
 
         <h1>
             Jewellery that<br>
-
-            <em>
-                makes you shine.
-            </em>
+            <em>makes you shine.</em>
         </h1>
 
 
         <p>
-            Elegant, affordable and carefully
-            selected jewellery for every occasion.
+            Elegant, affordable and carefully selected
+            jewellery for every occasion.
         </p>
 
 
@@ -157,7 +185,7 @@
 
 
 <!-- =========================================================
-     TRUST STRIP
+     TRUST BAR
 ========================================================= -->
 
 <section class="trust">
@@ -210,16 +238,14 @@
     <div class="collections">
 
 
-        <!-- EARRINGS -->
-
         <button
-            data-cat="Earrings"
             type="button"
+            data-cat="Earrings"
         >
 
             <img
                 src="https://i.ibb.co/cSvBDCKR/IMG-7425.png"
-                alt="GunIsh Jewels Earrings"
+                alt="Earrings"
                 loading="lazy"
             >
 
@@ -230,16 +256,14 @@
         </button>
 
 
-        <!-- RINGS -->
-
         <button
-            data-cat="Rings"
             type="button"
+            data-cat="Rings"
         >
 
             <img
                 src="https://i.ibb.co/pjmjK98S/DBD10-C40-0-E25-4-C74-9-D7-B-599-EAB34-AD32.png"
-                alt="GunIsh Jewels Rings"
+                alt="Rings"
                 loading="lazy"
             >
 
@@ -250,16 +274,14 @@
         </button>
 
 
-        <!-- NECKLACES -->
-
         <button
-            data-cat="Necklaces"
             type="button"
+            data-cat="Necklaces"
         >
 
             <img
                 src="https://i.ibb.co/pjmjK98S/DBD10-C40-0-E25-4-C74-9-D7-B-599-EAB34-AD32.png"
-                alt="GunIsh Jewels Necklaces"
+                alt="Necklaces"
                 loading="lazy"
             >
 
@@ -270,16 +292,14 @@
         </button>
 
 
-        <!-- BRACELETS -->
-
         <button
-            data-cat="Bracelets"
             type="button"
+            data-cat="Bracelets"
         >
 
             <img
                 src="https://i.ibb.co/dwSsdwHc/8981575-F-B361-4185-9-B7-E-BA811-B776-C53.png"
-                alt="GunIsh Jewels Bracelets"
+                alt="Bracelets"
                 loading="lazy"
             >
 
@@ -304,17 +324,16 @@
     id="products"
 >
 
+
     <div class="heading">
 
         <small>
             GUNISH JEWELS
         </small>
 
-
         <h2>
             Featured Jewellery
         </h2>
-
 
         <p>
             Choose a piece and order directly on WhatsApp.
@@ -331,41 +350,41 @@
         <div id="filters">
 
             <button
+                type="button"
                 class="active"
                 data-filter="All"
-                type="button"
             >
                 All
             </button>
 
 
             <button
-                data-filter="Earrings"
                 type="button"
+                data-filter="Earrings"
             >
                 Earrings
             </button>
 
 
             <button
-                data-filter="Rings"
                 type="button"
+                data-filter="Rings"
             >
                 Rings
             </button>
 
 
             <button
-                data-filter="Necklaces"
                 type="button"
+                data-filter="Necklaces"
             >
                 Necklaces
             </button>
 
 
             <button
-                data-filter="Bracelets"
                 type="button"
+                data-filter="Bracelets"
             >
                 Bracelets
             </button>
@@ -383,7 +402,7 @@
     </div>
 
 
-    <!-- PRODUCTS ARE GENERATED BY SCRIPT.JS -->
+    <!-- PRODUCT GRID -->
 
     <div
         class="grid"
@@ -397,6 +416,7 @@
     >
         No products found.
     </p>
+
 
 </section>
 
@@ -412,7 +432,7 @@
 
 
     <img
-        src="https://i.ibb.co/pjmjK98S/DBD10-C40-0-E25-4-C74-9-D7-B-599-EAB34-AD32.png"
+        src="https://i.ibb.co/gMf3T9tH/0450-ED53-24-C3-4-ECF-99-AC-119-CEADEC725.png"
         alt="GunIsh Jewels"
         loading="lazy"
     >
@@ -432,17 +452,15 @@
 
 
         <p>
-            GunIsh Jewels is built around
-            a simple idea: jewellery should
-            feel special without feeling
+            GunIsh Jewels is built around a simple idea:
+            jewellery should feel special without feeling
             out of reach.
         </p>
 
 
         <p>
-            From everyday earrings to
-            statement pieces, every product
-            is selected with style, comfort
+            From everyday earrings to statement pieces,
+            every product is selected with style, comfort
             and value in mind.
         </p>
 
@@ -461,7 +479,7 @@
 
 
 <!-- =========================================================
-     CALL TO ACTION
+     CTA
 ========================================================= -->
 
 <section class="cta">
@@ -498,7 +516,7 @@
 
     <img
         src="https://i.ibb.co/RTStC26H/45-C52-BDD-83-AB-4398-B3-AF-97-FE920-B681-B.png"
-        alt="GunIsh Jewels Logo"
+        alt="GunIsh Jewels"
     >
 
 
@@ -512,7 +530,7 @@
     </p>
 
 
-    <div class="footerLinks">
+    <div>
 
         <a href="#products">
             Shop
@@ -530,7 +548,6 @@
 
         <a
             id="footerWA"
-            href="#"
             target="_blank"
             rel="noopener noreferrer"
         >
@@ -548,14 +565,132 @@
 
 
 <!-- =========================================================
-     PRODUCT DETAILS MODAL
+     CART DRAWER
+========================================================= -->
+
+<aside
+    id="cartDrawer"
+    class="cartDrawer"
+>
+
+
+    <div class="cartHeader">
+
+
+        <div>
+
+            <small>
+                GUNISH JEWELS
+            </small>
+
+            <h2>
+                Your Cart
+            </h2>
+
+        </div>
+
+
+        <button
+            id="cartClose"
+            type="button"
+            aria-label="Close cart"
+        >
+            ×
+        </button>
+
+    </div>
+
+
+    <!-- CART ITEMS -->
+
+    <div
+        id="cartItems"
+        class="cartItems"
+    ></div>
+
+
+    <!-- EMPTY CART -->
+
+    <div
+        id="cartEmpty"
+        class="cartEmpty"
+    >
+
+        <div>
+            🛒
+        </div>
+
+
+        <h3>
+            Your cart is empty
+        </h3>
+
+
+        <p>
+            Add your favourite jewellery
+            to get started.
+        </p>
+
+    </div>
+
+
+    <!-- CART FOOTER -->
+
+    <div
+        id="cartFooter"
+        class="cartFooter"
+    >
+
+
+        <div class="cartTotalRow">
+
+            <span>
+                Total
+            </span>
+
+
+            <strong id="cartTotal">
+                ₹0
+            </strong>
+
+        </div>
+
+
+        <button
+            id="orderCart"
+            class="orderCart"
+            type="button"
+        >
+            ORDER ALL ON WHATSAPP
+        </button>
+
+
+        <small>
+            You will be redirected to WhatsApp
+            to confirm your order.
+        </small>
+
+    </div>
+
+
+</aside>
+
+
+<!-- CART OVERLAY -->
+
+<div
+    id="cartOverlay"
+    class="cartOverlay"
+></div>
+
+
+<!-- =========================================================
+     PRODUCT MODAL
 ========================================================= -->
 
 <div
     class="modal hidden"
     id="modal"
-    role="dialog"
-    aria-modal="true"
 >
 
 
@@ -565,7 +700,7 @@
         <button
             id="close"
             type="button"
-            aria-label="Close"
+            aria-label="Close product"
         >
             ×
         </button>
@@ -574,7 +709,7 @@
         <img
             id="mImg"
             src=""
-            alt="Product"
+            alt=""
         >
 
 
@@ -620,12 +755,22 @@
             </div>
 
 
-            <!-- WHATSAPP -->
+            <!-- ADD TO CART -->
+
+            <button
+                id="modalAddCart"
+                class="addModalCart"
+                type="button"
+            >
+                ADD TO CART
+            </button>
+
+
+            <!-- DIRECT WHATSAPP -->
 
             <a
                 id="mWA"
                 class="wa"
-                href="#"
                 target="_blank"
                 rel="noopener noreferrer"
             >
@@ -647,16 +792,17 @@
 <a
     class="floatWA"
     id="floatWA"
-    href="#"
     target="_blank"
     rel="noopener noreferrer"
-    aria-label="Chat with GunIsh Jewels on WhatsApp"
+    aria-label="Contact GunIsh Jewels on WhatsApp"
 >
     ☏
 </a>
 
 
-<!-- JAVASCRIPT -->
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
 
 <script src="script.js"></script>
 
