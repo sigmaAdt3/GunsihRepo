@@ -232,6 +232,8 @@ function addToCart(product, productQuantity = 1) {
 
     saveCart();
 
+    
+
 }
 
 
