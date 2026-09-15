@@ -776,15 +776,6 @@ function renderProducts() {
 
                 </div>
 
-                <a
-                    class="wa"
-                    href="${createWhatsAppUrl(product)}"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    WHATSAPP
-                </a>
-
             </div>
 
         `;
