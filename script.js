@@ -36,7 +36,6 @@ const products = [
         badge: "NEW"
     },
 
-
     {
         id: "R001",
         name: "Minimal Gold Ring",
@@ -59,7 +58,6 @@ const products = [
         badge: "POPULAR"
     },
 
-
     {
         id: "N001",
         name: "Classic Necklace",
@@ -81,7 +79,6 @@ const products = [
             "A modern layered look for customers who love a little extra sparkle.",
         badge: ""
     },
-
 
     {
         id: "B001",
@@ -116,6 +113,15 @@ let currentFilter = "All";
 let currentSearch = "";
 let selectedProduct = null;
 let quantity = 1;
+
+
+/* =========================================================
+   CART
+========================================================= */
+
+let cart = JSON.parse(
+    localStorage.getItem("gunishCart") || "[]"
+);
 
 
 /* =========================================================
@@ -158,8 +164,480 @@ const yearElement = document.getElementById("year");
 ========================================================= */
 
 function formatPrice(price) {
-
     return "₹" + Number(price).toLocaleString("en-IN");
+}
+
+
+/* =========================================================
+   SAVE CART
+========================================================= */
+
+function saveCart() {
+
+    localStorage.setItem(
+        "gunishCart",
+        JSON.stringify(cart)
+    );
+
+    updateCartCount();
+    renderCart();
+
+}
+
+
+/* =========================================================
+   CART COUNT
+========================================================= */
+
+function updateCartCount() {
+
+    const totalQuantity = cart.reduce(
+        (total, item) => total + item.quantity,
+        0
+    );
+
+    const cartCount = document.getElementById("cartCount");
+
+    if (cartCount) {
+        cartCount.textContent = totalQuantity;
+        cartCount.style.display =
+            totalQuantity > 0 ? "inline-flex" : "none";
+    }
+
+}
+
+
+/* =========================================================
+   ADD TO CART
+========================================================= */
+
+function addToCart(product, productQuantity = 1) {
+
+    const existingItem = cart.find(
+        item => item.id === product.id
+    );
+
+    if (existingItem) {
+
+        existingItem.quantity += productQuantity;
+
+    } else {
+
+        cart.push({
+            id: product.id,
+            quantity: productQuantity
+        });
+
+    }
+
+    saveCart();
+
+    showCart();
+
+}
+
+
+/* =========================================================
+   REMOVE FROM CART
+========================================================= */
+
+function removeFromCart(productId) {
+
+    cart = cart.filter(
+        item => item.id !== productId
+    );
+
+    saveCart();
+
+}
+
+
+/* =========================================================
+   CHANGE CART QUANTITY
+========================================================= */
+
+function changeCartQuantity(productId, change) {
+
+    const item = cart.find(
+        item => item.id === productId
+    );
+
+    if (!item) {
+        return;
+    }
+
+    item.quantity += change;
+
+    if (item.quantity <= 0) {
+
+        removeFromCart(productId);
+        return;
+
+    }
+
+    saveCart();
+
+}
+
+
+/* =========================================================
+   CART DETAILS
+========================================================= */
+
+function getCartProducts() {
+
+    return cart
+        .map(item => {
+
+            const product = products.find(
+                product => product.id === item.id
+            );
+
+            if (!product) {
+                return null;
+            }
+
+            return {
+                ...product,
+                quantity: item.quantity,
+                subtotal: product.price * item.quantity
+            };
+
+        })
+        .filter(Boolean);
+
+}
+
+
+/* =========================================================
+   CART TOTAL
+========================================================= */
+
+function getCartTotal() {
+
+    return getCartProducts().reduce(
+        (total, product) =>
+            total + product.subtotal,
+        0
+    );
+
+}
+
+
+/* =========================================================
+   RENDER CART
+========================================================= */
+
+function renderCart() {
+
+    const cartItems = document.getElementById("cartItems");
+    const cartTotal = document.getElementById("cartTotal");
+    const cartEmpty = document.getElementById("cartEmpty");
+    const cartFooter = document.getElementById("cartFooter");
+
+    if (!cartItems) {
+        return;
+    }
+
+    const items = getCartProducts();
+
+    cartItems.innerHTML = "";
+
+    if (items.length === 0) {
+
+        cartEmpty.style.display = "block";
+
+        if (cartFooter) {
+            cartFooter.style.display = "none";
+        }
+
+        return;
+
+    }
+
+    cartEmpty.style.display = "none";
+
+    if (cartFooter) {
+        cartFooter.style.display = "block";
+    }
+
+
+    items.forEach(item => {
+
+        const div = document.createElement("div");
+
+        div.className = "cartItem";
+
+        div.innerHTML = `
+
+            <img
+                src="${item.image}"
+                alt="${item.name}"
+                onerror="this.style.display='none'"
+            >
+
+            <div class="cartItemInfo">
+
+                <h4>${item.name}</h4>
+
+                <small>${item.id}</small>
+
+                <strong>${formatPrice(item.price)}</strong>
+
+                <div class="cartQuantity">
+
+                    <button
+                        type="button"
+                        data-cart-minus="${item.id}"
+                    >
+                        −
+                    </button>
+
+                    <span>${item.quantity}</span>
+
+                    <button
+                        type="button"
+                        data-cart-plus="${item.id}"
+                    >
+                        +
+                    </button>
+
+                    <button
+                        type="button"
+                        class="removeCart"
+                        data-cart-remove="${item.id}"
+                    >
+                        Remove
+                    </button>
+
+                </div>
+
+            </div>
+
+            <div class="cartSubtotal">
+                ${formatPrice(item.subtotal)}
+            </div>
+
+        `;
+
+        cartItems.appendChild(div);
+
+    });
+
+
+    if (cartTotal) {
+        cartTotal.textContent =
+            formatPrice(getCartTotal());
+    }
+
+}
+
+
+/* =========================================================
+   CART EVENTS
+========================================================= */
+
+document.addEventListener(
+    "click",
+    function (event) {
+
+        const plus =
+            event.target.closest("[data-cart-plus]");
+
+        const minus =
+            event.target.closest("[data-cart-minus]");
+
+        const remove =
+            event.target.closest("[data-cart-remove]");
+
+
+        if (plus) {
+
+            changeCartQuantity(
+                plus.dataset.cartPlus,
+                1
+            );
+
+        }
+
+
+        if (minus) {
+
+            changeCartQuantity(
+                minus.dataset.cartMinus,
+                -1
+            );
+
+        }
+
+
+        if (remove) {
+
+            removeFromCart(
+                remove.dataset.cartRemove
+            );
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   SHOW CART
+========================================================= */
+
+function showCart() {
+
+    const cartDrawer =
+        document.getElementById("cartDrawer");
+
+    if (cartDrawer) {
+        cartDrawer.classList.add("open");
+    }
+
+    document.body.style.overflow = "hidden";
+
+}
+
+
+/* =========================================================
+   CLOSE CART
+========================================================= */
+
+function closeCart() {
+
+    const cartDrawer =
+        document.getElementById("cartDrawer");
+
+    if (cartDrawer) {
+        cartDrawer.classList.remove("open");
+    }
+
+    document.body.style.overflow = "";
+
+}
+
+
+/* =========================================================
+   CART BUTTON
+========================================================= */
+
+const cartButton =
+    document.getElementById("cartButton");
+
+if (cartButton) {
+
+    cartButton.addEventListener(
+        "click",
+        showCart
+    );
+
+}
+
+
+/* =========================================================
+   CLOSE CART BUTTON
+========================================================= */
+
+const cartClose =
+    document.getElementById("cartClose");
+
+if (cartClose) {
+
+    cartClose.addEventListener(
+        "click",
+        closeCart
+    );
+
+}
+
+
+/* =========================================================
+   CART OVERLAY
+========================================================= */
+
+const cartOverlay =
+    document.getElementById("cartOverlay");
+
+if (cartOverlay) {
+
+    cartOverlay.addEventListener(
+        "click",
+        closeCart
+    );
+
+}
+
+
+/* =========================================================
+   ORDER ENTIRE CART ON WHATSAPP
+========================================================= */
+
+function orderCartOnWhatsApp() {
+
+    const items = getCartProducts();
+
+    if (items.length === 0) {
+
+        alert("Your cart is empty.");
+
+        return;
+
+    }
+
+
+    let message =
+        `Hi GunIsh Jewels 👋\n\n` +
+        `I would like to order the following jewellery:\n\n`;
+
+
+    items.forEach((item, index) => {
+
+        message +=
+            `${index + 1}. ${item.name}\n` +
+            `Product ID: ${item.id}\n` +
+            `Quantity: ${item.quantity}\n` +
+            `Price: ${formatPrice(item.price)} each\n` +
+            `Subtotal: ${formatPrice(item.subtotal)}\n\n`;
+
+    });
+
+
+    message +=
+        `--------------------------\n` +
+        `Total Amount: ${formatPrice(getCartTotal())}\n\n` +
+        `Please confirm availability and ordering details.\n` +
+        `Thank you!`;
+
+
+    const url =
+        `https://wa.me/${CONFIG.whatsappNumber}?text=` +
+        encodeURIComponent(message);
+
+
+    window.open(
+        url,
+        "_blank",
+        "noopener,noreferrer"
+    );
+
+}
+
+
+/* =========================================================
+   ORDER CART BUTTON
+========================================================= */
+
+const orderCartButton =
+    document.getElementById("orderCart");
+
+if (orderCartButton) {
+
+    orderCartButton.addEventListener(
+        "click",
+        orderCartOnWhatsApp
+    );
 
 }
 
@@ -168,20 +646,20 @@ function formatPrice(price) {
    WHATSAPP URL
 ========================================================= */
 
-function createWhatsAppUrl(product, productQuantity = 1) {
+function createWhatsAppUrl(
+    product,
+    productQuantity = 1
+) {
 
-    const message = `Hi GunIsh Jewels 👋
-
-I am interested in:
-
-Product: ${product.name}
-Product ID: ${product.id}
-Category: ${product.category}
-Price: ${formatPrice(product.price)}
-Quantity: ${productQuantity}
-
-Please confirm availability and ordering details.`;
-
+    const message =
+        `Hi GunIsh Jewels 👋\n\n` +
+        `I am interested in:\n\n` +
+        `Product: ${product.name}\n` +
+        `Product ID: ${product.id}\n` +
+        `Category: ${product.category}\n` +
+        `Price: ${formatPrice(product.price)}\n` +
+        `Quantity: ${productQuantity}\n\n` +
+        `Please confirm availability and ordering details.`;
 
     return `https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(message)}`;
 
@@ -195,9 +673,8 @@ Please confirm availability and ordering details.`;
 function createGenericWhatsAppUrl() {
 
     const message =
-        `Hi GunIsh Jewels 👋
-
-I would like to know more about your jewellery collection.`;
+        `Hi GunIsh Jewels 👋\n\n` +
+        `I would like to know more about your jewellery collection.`;
 
     return `https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(message)}`;
 
@@ -210,22 +687,23 @@ I would like to know more about your jewellery collection.`;
 
 function renderProducts() {
 
-    const filteredProducts = products.filter(product => {
+    const filteredProducts =
+        products.filter(product => {
 
-        const categoryMatch =
-            currentFilter === "All" ||
-            product.category === currentFilter;
+            const categoryMatch =
+                currentFilter === "All" ||
+                product.category === currentFilter;
 
+            const searchMatch =
+                `${product.name} ${product.category}`
+                    .toLowerCase()
+                    .includes(
+                        currentSearch.toLowerCase()
+                    );
 
-        const searchMatch =
-            `${product.name} ${product.category}`
-                .toLowerCase()
-                .includes(currentSearch.toLowerCase());
+            return categoryMatch && searchMatch;
 
-
-        return categoryMatch && searchMatch;
-
-    });
+        });
 
 
     productGrid.innerHTML = "";
@@ -233,7 +711,8 @@ function renderProducts() {
 
     filteredProducts.forEach(product => {
 
-        const article = document.createElement("article");
+        const article =
+            document.createElement("article");
 
         article.className = "card";
 
@@ -269,16 +748,13 @@ function renderProducts() {
                     ${product.category}
                 </div>
 
-
                 <h3 class="name">
                     ${product.name}
                 </h3>
 
-
                 <div class="price">
                     ${formatPrice(product.price)}
                 </div>
-
 
                 <div class="actions">
 
@@ -290,17 +766,24 @@ function renderProducts() {
                         VIEW DETAILS
                     </button>
 
-
-                    <a
-                        class="wa"
-                        href="${createWhatsAppUrl(product)}"
-                        target="_blank"
-                        rel="noopener noreferrer"
+                    <button
+                        type="button"
+                        class="addCartButton"
+                        data-add-cart="${product.id}"
                     >
-                        WHATSAPP
-                    </a>
+                        ADD TO CART
+                    </button>
 
                 </div>
+
+                <a
+                    class="wa"
+                    href="${createWhatsAppUrl(product)}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    WHATSAPP
+                </a>
 
             </div>
 
@@ -321,6 +804,73 @@ function renderProducts() {
 
 
 /* =========================================================
+   ADD TO CART FROM PRODUCT CARD
+========================================================= */
+
+productGrid.addEventListener(
+    "click",
+    function (event) {
+
+        const addButton =
+            event.target.closest("[data-add-cart]");
+
+
+        if (addButton) {
+
+            const product =
+                products.find(
+                    item =>
+                        item.id ===
+                        addButton.dataset.addCart
+                );
+
+
+            if (product) {
+
+                addToCart(product, 1);
+
+            }
+
+            return;
+
+        }
+
+
+        const target =
+            event.target.closest(
+                "[data-product-id]"
+            );
+
+
+        if (!target) {
+            return;
+        }
+
+
+        if (event.target.closest(".wa")) {
+            return;
+        }
+
+
+        const product =
+            products.find(
+                item =>
+                    item.id ===
+                    target.dataset.productId
+            );
+
+
+        if (product) {
+
+            openProductModal(product);
+
+        }
+
+    }
+);
+
+
+/* =========================================================
    OPEN PRODUCT MODAL
 ========================================================= */
 
@@ -332,25 +882,19 @@ function openProductModal(product) {
 
 
     modalImage.src = product.image;
-
     modalImage.alt = product.name;
-
 
     modalCategory.textContent =
         product.category;
 
-
     modalName.textContent =
         product.name;
-
 
     modalPrice.textContent =
         formatPrice(product.price);
 
-
     modalDescription.textContent =
         product.description;
-
 
     quantityValue.textContent =
         quantity;
@@ -360,7 +904,6 @@ function openProductModal(product) {
 
 
     modal.classList.remove("hidden");
-
 
     document.body.style.overflow = "hidden";
 
@@ -377,12 +920,39 @@ function updateModalWhatsApp() {
         return;
     }
 
-
     modalWhatsApp.href =
         createWhatsAppUrl(
             selectedProduct,
             quantity
         );
+
+}
+
+
+/* =========================================================
+   ADD TO CART FROM MODAL
+========================================================= */
+
+const modalAddCart =
+    document.getElementById("modalAddCart");
+
+if (modalAddCart) {
+
+    modalAddCart.addEventListener(
+        "click",
+        function () {
+
+            if (!selectedProduct) {
+                return;
+            }
+
+            addToCart(
+                selectedProduct,
+                quantity
+            );
+
+        }
+    );
 
 }
 
@@ -402,126 +972,11 @@ function closeProductModal() {
 }
 
 
-/* =========================================================
-   PRODUCT GRID CLICK
-========================================================= */
-
-productGrid.addEventListener("click", function (event) {
-
-    const target =
-        event.target.closest("[data-product-id]");
-
-
-    if (!target) {
-        return;
-    }
-
-
-    /*
-       Don't open product modal when
-       WhatsApp link is clicked.
-    */
-
-    if (event.target.closest(".wa")) {
-        return;
-    }
-
-
-    const productId =
-        target.dataset.productId;
-
-
-    const product =
-        products.find(
-            item => item.id === productId
-        );
-
-
-    if (product) {
-
-        openProductModal(product);
-
-    }
-
-});
-
-
-/* =========================================================
-   CATEGORY FILTERS
-========================================================= */
-
-filterContainer.addEventListener(
-    "click",
-    function (event) {
-
-        const button =
-            event.target.closest(
-                "[data-filter]"
-            );
-
-
-        if (!button) {
-            return;
-        }
-
-
-        currentFilter =
-            button.dataset.filter;
-
-
-        document
-            .querySelectorAll(
-                "#filters button"
-            )
-            .forEach(item => {
-
-                item.classList.remove(
-                    "active"
-                );
-
-            });
-
-
-        button.classList.add(
-            "active"
-        );
-
-
-        renderProducts();
-
-    }
-);
-
-
-/* =========================================================
-   SEARCH
-========================================================= */
-
-searchInput.addEventListener(
-    "input",
-    function (event) {
-
-        currentSearch =
-            event.target.value;
-
-
-        renderProducts();
-
-    }
-);
-
-
-/* =========================================================
-   MODAL CLOSE
-========================================================= */
-
 modalClose.addEventListener(
     "click",
     closeProductModal
 );
 
-
-/* Close when clicking outside modal */
 
 modal.addEventListener(
     "click",
@@ -572,10 +1027,8 @@ quantityMinus.addEventListener(
                 quantity - 1
             );
 
-
         quantityValue.textContent =
             quantity;
-
 
         updateModalWhatsApp();
 
@@ -593,12 +1046,69 @@ quantityPlus.addEventListener(
 
         quantity++;
 
-
         quantityValue.textContent =
             quantity;
 
-
         updateModalWhatsApp();
+
+    }
+);
+
+
+/* =========================================================
+   CATEGORY FILTERS
+========================================================= */
+
+filterContainer.addEventListener(
+    "click",
+    function (event) {
+
+        const button =
+            event.target.closest(
+                "[data-filter]"
+            );
+
+        if (!button) {
+            return;
+        }
+
+        currentFilter =
+            button.dataset.filter;
+
+        document
+            .querySelectorAll(
+                "#filters button"
+            )
+            .forEach(item => {
+
+                item.classList.remove(
+                    "active"
+                );
+
+            });
+
+        button.classList.add(
+            "active"
+        );
+
+        renderProducts();
+
+    }
+);
+
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+searchInput.addEventListener(
+    "input",
+    function (event) {
+
+        currentSearch =
+            event.target.value;
+
+        renderProducts();
 
     }
 );
@@ -621,10 +1131,8 @@ document
                 const category =
                     button.dataset.cat;
 
-
                 currentFilter =
                     category;
-
 
                 document
                     .querySelectorAll(
@@ -634,14 +1142,13 @@ document
 
                         filterButton.classList.toggle(
                             "active",
-                            filterButton.dataset.filter === category
+                            filterButton.dataset.filter ===
+                            category
                         );
 
                     });
 
-
                 renderProducts();
-
 
                 document
                     .getElementById("products")
@@ -671,8 +1178,6 @@ menuButton.addEventListener(
 );
 
 
-/* Close mobile menu after navigation */
-
 mobileNavigation
     .querySelectorAll("a")
     .forEach(link => {
@@ -701,7 +1206,6 @@ const genericWhatsApp =
 
 floatingWhatsApp.href =
     genericWhatsApp;
-
 
 footerWhatsApp.href =
     genericWhatsApp;
@@ -736,5 +1240,9 @@ yearElement.textContent =
 /* =========================================================
    INITIAL LOAD
 ========================================================= */
+
+updateCartCount();
+
+renderCart();
 
 renderProducts();
